@@ -40,14 +40,14 @@ batch_size = 128 #32
 num_classes = 10
 epochs = 1
 data_augmentation = True #True #False
-img_rows=32
-img_cols=32
+img_rows=64 #32
+img_cols=64 #32
 result_dir="./history"
 
 # The data, shuffled and split between train and test sets:
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 #x_train,y_train,x_test,y_test = getDataSet(img_rows,img_cols)
-"""
+
 X_train =[]
 X_test = []
 for i in range(50000):
@@ -66,14 +66,14 @@ print(X_test.shape, y_test.shape)
 
 x_train = X_train.astype('float32')
 x_test = X_test.astype('float32')
-x_train /= 255
-x_test /= 255
+#x_train /= 255
+#x_test /= 255
 """
 x_train = np.array(x_train)  #/ 255
 y_train = np.array(y_train).astype(np.int32)
 x_test = np.array(x_test) #/ 255
 y_test = np.array(y_test).astype(np.int32)
-
+"""
 print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
@@ -90,8 +90,8 @@ vgg16 = VGG16(include_top=False, weights='imagenet', input_tensor=input_tensor)
 # FC層を構築
 top_model = Sequential()
 top_model.add(Flatten(input_shape=vgg16.output_shape[1:])) 
-top_model.add(Dense(256, activation='relu'))
-top_model.add(Dropout(0.5))
+#top_model.add(Dense(256, activation='relu'))
+#top_model.add(Dropout(0.5))
 top_model.add(Dense(num_classes, activation='softmax'))
 
 # VGG16とFCを接続
